@@ -1,9 +1,9 @@
 <?php 
 // DB credentials.
 define('DB_HOST','localhost');
-define('DB_USER','root');
-define('DB_PASS','');
-define('DB_NAME','cwmsdb');
+define('DB_USER','mariadb');
+define('DB_PASS','mariadb');
+define('DB_NAME','mariadb');
 // Establish database connection.
 try
 {

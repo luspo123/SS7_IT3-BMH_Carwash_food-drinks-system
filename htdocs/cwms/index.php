@@ -123,7 +123,7 @@ else
                         </div>
                         <div class="about-content">
                             <p>
-                                Lorem ipsum dolor sit amet elit. In vitae turpis. Donec in hendre dui, vel blandit massa. Ut vestibu suscipi cursus. Cras quis porta nulla, ut placerat risus. Aliquam nec magna eget velit luctus dictum
+                            The customer is the customer himself. In the middle of life. Until it is in hendre dui, or the mass is flattering. To get dressed for the course. Tomorrow there is no door, to put on a smile. There is no great need for mourning
                             </p>
                             <ul>
                                 <li><i class="far fa-check-circle"></i>Seats washing</li>
@@ -260,7 +260,7 @@ else
                         <div class="price-item">
                             <div class="price-header">
                                 <h3>Basic Cleaning</h3>
-                                <h2><span>$</span><strong>10</strong><span>.99</span></h2>
+                                <h2><span>₱</span><strong>500</strong><span>.00</span></h2>
                             </div>
                             <div class="price-body">
                                 <ul>
@@ -280,7 +280,7 @@ else
                         <div class="price-item featured-item">
                             <div class="price-header">
                                 <h3>Premium Cleaning</h3>
-                                <h2><span>$</span><strong>20</strong><span>.99</span></h2>
+                                <h2><span>₱</span><strong>1000</strong><span>.00</span></h2>
                             </div>
                             <div class="price-body">
                                 <ul>
@@ -300,7 +300,7 @@ else
                         <div class="price-item">
                             <div class="price-header">
                                 <h3>Complex Cleaning</h3>
-                                <h2><span>$</span><strong>30</strong><span>.99</span></h2>
+                                <h2><span>₱</span><strong>3500</strong><span>.00</span></h2>
                             </div>
                             <div class="price-body">
                                 <ul>
@@ -341,9 +341,9 @@ else
   <p>
             <select name="packagetype" required class="form-control">
                 <option value="">Package Type</option>
-                <option value="1">BASIC CLEANING ($10.99)</option>
-                 <option value="2">PREMIUM CLEANING ($20.99)</option>
-                  <option value="3 ">COMPLEX CLEANING($30.99)</option>
+                <option value="1">BASIC CLEANING (₱500.00)</option>
+                 <option value="2">PREMIUM CLEANING (₱1000.00)</option>
+                  <option value="3 ">COMPLEX CLEANING(₱3500.00)</option>
               </select>
 
           <p>

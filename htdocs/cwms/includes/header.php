@@ -5,7 +5,7 @@
                     <div class="col-lg-4 col-md-12">
                         <div class="logo">
                             <a href="index.php">
-                                <h1>CAR <span>Wash</span></h1>
+                                <h1>CARWASH <span>Food & Drinks</span></h1>
                                 <!-- <img src="img/logo.jpg" alt="Logo"> -->
                             </a>
                         </div>
