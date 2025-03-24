@@ -4,7 +4,7 @@ include('includes/config.php');
 if(isset($_POST['login']))
 {
 $uname=$_POST['username'];
-$password=md5($_POST['password']);
+$password=($_POST['password']);
 $sql ="SELECT UserName,Password FROM admin WHERE UserName=:uname and Password=:password";
 $query= $dbh -> prepare($sql);
 $query-> bindParam(':uname', $uname, PDO::PARAM_STR);
@@ -22,6 +22,8 @@ echo "<script type='text/javascript'> document.location = 'dashboard.php'; </scr
 }
 
 }
+
+
 
 ?>
 
@@ -48,7 +50,7 @@ echo "<script type='text/javascript'> document.location = 'dashboard.php'; </scr
 <!-- lined-icons -->
 <link rel="stylesheet" href="css/icon-font.min.css" type='text/css' />
 <!-- //lined-icons -->
-</head> 
+</html> 
 <body>
 	<div class="main-wthree">
 	<div class="container">
