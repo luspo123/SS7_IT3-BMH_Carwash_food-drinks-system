@@ -149,7 +149,24 @@ foreach($results as $result)
                                 
                                 </div>
                                 <div class="control-group">
-                                    <input type="text" class="form-control" id="subject" placeholder="Subject" required="required" name="subject" /> <br />
+                                    <select type="select" class="form-control" id="subject" placeholder="Type Of Service" required="Type Of Service" name="subject" >
+                                        <option value="Type Of Service">Type Of Service</option>
+                                        <option value="General Customer Service">Basic Cleaning</option>
+                                        <option value="Booking Service">Premium Cleaning</option>
+                                        <option value="Complex Cleaning">Complex Cleaning</option>
+                                        <option value="Cancellation Service">Cancellation Service</option>
+                                        <option value="Other">Other</option>
+                                    </select> <br />
+
+                                    <div class="slideshow-container">
+                                        <img class="slides active" src="/cwms/img/Slide0.jpg" alt="Slide 1">
+                                        <img class="slides" src="/cwms/img/slide1.jpg" alt="Slide 2"> <!-- Added .jpg -->
+                                        <img class="slides" src="/cwms/img/slide2.jpg" alt="Slide 3">
+                                        <img class="slides" src="/cwms/img/slide3.jpg" alt="Slide 4"> <!-- Added .jpg -->
+
+                                    <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+                                    <button class="next" onclick="changeSlide(1)">&#10095;</button>
+                                    </div>
                        
                                 </div>
                                 <div class="control-group">
@@ -185,5 +202,25 @@ foreach($results as $result)
 
         <!-- Template Javascript -->
         <script src="js/main.js"></script>
+        <!-- Slide script -->
+        <script>
+        let currentIndex = 0;
+        const slides = document.querySelectorAll('.slides');
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[index].classList.add('active');
+        }
+
+        function changeSlide(direction) {
+            currentIndex += direction;
+            if (currentIndex >= slides.length) currentIndex = 0;
+            if (currentIndex < 0) currentIndex = slides.length - 1;
+            showSlide(currentIndex);
+        }
+
+        setInterval(() => changeSlide(1), 10000); // Auto-slide every 3 seconds
+    </script>
+    
     </body>
 </html>
