@@ -44,7 +44,7 @@ else
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Car Wash management System | Home Page</title>
+        <title>BMH Car Wash Food & Drinks Booking management System | Home Page</title>
 
 
         <!-- Favicon -->
@@ -210,7 +210,7 @@ else
                         <div class="facts-item">
                             <i class="fa fa-map-marker-alt"></i>
                             <div class="facts-text">
-                                <h3 data-toggle="counter-up">25</h3>
+                                <h3 data-toggle="counter-up">3</h3>
                                 <p>Service Points</p>
                             </div>
                         </div>
@@ -219,7 +219,7 @@ else
                         <div class="facts-item">
                             <i class="fa fa-user"></i>
                             <div class="facts-text">
-                                <h3 data-toggle="counter-up">350</h3>
+                                <h3 data-toggle="counter-up">5</h3>
                                 <p>Engineers & Workers</p>
                             </div>
                         </div>
@@ -228,7 +228,7 @@ else
                         <div class="facts-item">
                             <i class="fa fa-users"></i>
                             <div class="facts-text">
-                                <h3 data-toggle="counter-up">1500</h3>
+                                <h3 data-toggle="counter-up">100</h3>
                                 <p>Happy Clients</p>
                             </div>
                         </div>
@@ -237,7 +237,7 @@ else
                         <div class="facts-item">
                             <i class="fa fa-check"></i>
                             <div class="facts-text">
-                                <h3 data-toggle="counter-up">5000</h3>
+                                <h3 data-toggle="counter-up">100</h3>
                                 <p>Projects Completed</p>
                             </div>
                         </div>
