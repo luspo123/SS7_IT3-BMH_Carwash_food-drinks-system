@@ -78,7 +78,7 @@ else
             <div class="container">
                 <div class="section-header text-center">
                     <p>Get In Touch</p>
-                    <h2>Contact for any query</h2>
+                    <h2>Contact for any inquiry</h2>
                 </div>
                 <div class="row">
 <?php 

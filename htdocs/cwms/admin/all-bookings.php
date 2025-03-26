@@ -2,18 +2,29 @@
 session_start();
 error_reporting(0);
 include('includes/config.php');
-if(strlen($_SESSION['alogin'])==0)
-	{	
-header('location:index.php');
-}
-else{ 
 
+if (strlen($_SESSION['alogin']) == 0) {
+    header('location:index.php');
+} else {
+    // Handle Accept or Decline actions
+    if (isset($_GET['action']) && isset($_GET['id'])) {
+        $id = intval($_GET['id']);
+        $status = ($_GET['action'] == 'accept') ? 'Completed' : 'Declined';
 
+        $sql = "UPDATE tblcarwashbooking SET verification_status = :status WHERE id = :id";
+        $query = $dbh->prepare($sql);
+        $query->bindParam(':status', $status, PDO::PARAM_STR);
+        $query->bindParam(':id', $id, PDO::PARAM_INT);
 
+        if ($query->execute()) {
+            echo "<script>alert('Booking has been " . ($status == 'Completed' ? 'accepted' : 'declined') . " successfully!');</script>";
+            echo "<script>window.location.href ='all-bookings.php'</script>";
+        } else {
+            echo "<script>alert('Error updating booking status.');</script>";
+        }
+    }
 
-
-
-	?>
+    ?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -60,7 +71,7 @@ else{
 <link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="css/icon-font.min.css" type='text/css' />
   <style>
-		.errorWrap {
+        .errorWrap {
     padding: 10px;
     margin: 0 0 20px 0;
     background: #fff;
@@ -76,146 +87,129 @@ else{
     -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
     box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
 }
-		</style>
+        </style>
 </head> 
 <body>
    <div class="page-container">
    <!--/content-inner-->
 <div class="left-content">
-	   <div class="mother-grid-inner">
+       <div class="mother-grid-inner">
             <!--header start here-->
-				<?php include('includes/header.php');?>
-				     <div class="clearfix"> </div>	
-				</div>
+                <?php include('includes/header.php');?>
+                     <div class="clearfix"> </div>	
+                </div>
 <!--heder end here-->
 <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="dashboard.php">Home</a><i class="fa fa-angle-right"></i>Manage All Bookings</li>
             </ol>
 <div class="agile-grids">	
-				<!-- tables -->
+                <!-- tables -->
 
-				<div class="agile-tables">
-					<div class="w3l-table-info">
-					  <h2>All Bookings</h2>
-					    <table id="table">
-						<thead>
-						  <tr>
-						  <th>Booking No.</th>
-							<th>Name</th>
-							<th width="200">Pacakge Type</th>
-							<th>Washing Point </th>
-							<th>Washing Date/Time </th>
-							<th width="200">Posting date </th>
-							<th>Action </th>
-							
-						  </tr>
-						</thead>
-						<tbody>
-<?php $sql = "SELECT *,tblcarwashbooking.id as bid from tblcarwashbooking
-join tblwashingpoints on tblwashingpoints.id=tblcarwashbooking.carWashPoint";
-$query = $dbh -> prepare($sql);
+                <div class="agile-tables">
+                    <div class="w3l-table-info">
+                      <h2>All Bookings</h2>
+                        <table id="table">
+                        <thead>
+                          <tr>
+                          <th>Booking No.</th>
+                            <th>Name</th>
+                            <th width="200">Package Type</th>
+                            <th>Washing Point</th>
+                            <th>Washing Date/Time</th>
+                            <th width="200">Posting Date</th>
+                            <th>Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+<?php 
+// Fetch all bookings except those with status 'Declined'
+$sql = "SELECT *, tblcarwashbooking.id as bid FROM tblcarwashbooking
+        JOIN tblwashingpoints ON tblwashingpoints.id = tblcarwashbooking.carWashPoint
+        WHERE status != 'Declined'";
+$query = $dbh->prepare($sql);
 $query->execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
+$results = $query->fetchAll(PDO::FETCH_OBJ);
 
-if($query->rowCount() > 0)
-{
-foreach($results as $result)
-{				?>		
-						  <tr>
-							<td><?php echo htmlentities($result->bookingId);?></td>
-							<td><?php echo htmlentities($result->fullName);?></td>
-								<td width="50">
-								<?php $ptype=$result->packageType;
-if($ptype==1): echo "BASIC CLEANING ($10.99)";endif;
-if($ptype==2): echo "PREMIUM CLEANING ($20.99)";endif;
-if($ptype==3): echo "COMPLEX CLEANING ($30.99)";endif;
-
-
-							?></td>
-							
-						
-							<td><?php echo htmlentities($result->washingPointName	);?><br />
-								<?php echo htmlentities($result->washingPointAddress);?></td>
-							<td><?php echo htmlentities($result->washDate."/".$result->washTime);?></td>
-							
-								<td><?php echo htmlentities($result->postingDate);?></td>
-				
-
-<td><a href="booking-details.php?bid=<?php echo htmlentities($result->bid);?>&&bookingid=<?php echo htmlentities($result->bookingId);?>">View</a>
-</td>
+if ($query->rowCount() > 0) {
+    foreach ($results as $result) { ?>		
+                          <tr>
+                            <td><?php echo htmlentities($result->bookingId); ?></td>
+                            <td><?php echo htmlentities($result->fullName); ?></td>
+                            <td width="50">
+                                <?php 
+                                $ptype = $result->packageType;
+                                if ($ptype == 1) echo "BASIC CLEANING ($10.99)";
+                                if ($ptype == 2) echo "PREMIUM CLEANING ($20.99)";
+                                if ($ptype == 3) echo "COMPLEX CLEANING ($30.99)";
+                                ?>
+                            </td>
+                            <td><?php echo htmlentities($result->washingPointName); ?><br />
+                                <?php echo htmlentities($result->washingPointAddress); ?></td>
+                            <td><?php echo htmlentities($result->washDate . "/" . $result->washTime); ?></td>
+                            <td><?php echo htmlentities($result->postingDate); ?></td>
+                            <td>
+                                <a href="all-bookings.php?action=accept&id=<?php echo htmlentities($result->bid); ?>" class="btn btn-success" onclick="return confirm('Are you sure you want to accept this booking?');">Accept</a>
+                                <a href="all-bookings.php?action=decline&id=<?php echo htmlentities($result->bid); ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to decline this booking?');">Decline</a>
+                            </td>
+                          </tr>
+<?php } 
+} else { ?>
+                          <tr>
+                              <td colspan="7" style="color:red;">No Record found</td>
+                          </tr>
 <?php } ?>
-</tr>
-						 <?php } else { ?>
-						 	<tr>
-						 		<td colspan="6" style="color:red;">No Record found</td>
-
-						 	</tr>
-						 <?php } ?>
-						</tbody>
-					  </table>
-					</div>
-				  </table>
-
-				
-			</div>
+                        </tbody>
+                      </table>
+                    </div>
+                  </table>
+            </div>
 <!-- script-for sticky-nav -->
-		<script>
-		$(document).ready(function() {
-			 var navoffeset=$(".header-main").offset().top;
-			 $(window).scroll(function(){
-				var scrollpos=$(window).scrollTop(); 
-				if(scrollpos >=navoffeset){
-					$(".header-main").addClass("fixed");
-				}else{
-					$(".header-main").removeClass("fixed");
-				}
-			 });
-			 
-		});
-		</script>
-		<!-- /script-for sticky-nav -->
+        <script>
+        $(document).ready(function() {
+             var navoffeset = $(".header-main").offset().top;
+             $(window).scroll(function() {
+                var scrollpos = $(window).scrollTop(); 
+                if (scrollpos >= navoffeset) {
+                    $(".header-main").addClass("fixed");
+                } else {
+                    $(".header-main").removeClass("fixed");
+                }
+             });
+        });
+        </script>
+        <!-- /script-for sticky-nav -->
 <!--inner block start here-->
-<div class="inner-block">
-
-</div>
-<!--inner block end here-->
+<div class="inner-block"></div>
 <!--copy rights start here-->
-<?php include('includes/footer.php');?>
+<?php include('includes/footer.php'); ?>
 <!--COPY rights end here-->
 </div>
 </div>
   <!--//content-inner-->
-		<!--/sidebar-menu-->
-						<?php include('includes/sidebarmenu.php');?>
-							  <div class="clearfix"></div>		
-							</div>
-							<script>
-							var toggle = true;
-										
-							$(".sidebar-icon").click(function() {                
-							  if (toggle)
-							  {
-								$(".page-container").addClass("sidebar-collapsed").removeClass("sidebar-collapsed-back");
-								$("#menu span").css({"position":"absolute"});
-							  }
-							  else
-							  {
-								$(".page-container").removeClass("sidebar-collapsed").addClass("sidebar-collapsed-back");
-								setTimeout(function() {
-								  $("#menu span").css({"position":"relative"});
-								}, 400);
-							  }
-											
-											toggle = !toggle;
-										});
-							</script>
+        <!--/sidebar-menu-->
+<?php include('includes/sidebarmenu.php'); ?>
+<div class="clearfix"></div>		
+<script>
+var toggle = true;
+$(".sidebar-icon").click(function() {                
+  if (toggle) {
+    $(".page-container").addClass("sidebar-collapsed").removeClass("sidebar-collapsed-back");
+    $("#menu span").css({"position":"absolute"});
+  } else {
+    $(".page-container").removeClass("sidebar-collapsed").addClass("sidebar-collapsed-back");
+    setTimeout(function() {
+      $("#menu span").css({"position":"relative"});
+    }, 400);
+  }
+  toggle = !toggle;
+});
+</script>
 <!--js -->
 <script src="js/jquery.nicescroll.js"></script>
 <script src="js/scripts.js"></script>
 <!-- Bootstrap Core JavaScript -->
-   <script src="js/bootstrap.min.js"></script>
-   <!-- /Bootstrap Core JavaScript -->	   
-
+<script src="js/bootstrap.min.js"></script>
+<!-- /Bootstrap Core JavaScript -->	   
 </body>
 </html>
 <?php } ?>

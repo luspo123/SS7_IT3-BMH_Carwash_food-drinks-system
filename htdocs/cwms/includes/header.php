@@ -82,7 +82,7 @@ foreach($results as $result)
                             <a href="admin" class="nav-item nav-link">admin</a>
                         </div>
                         <div class="ml-auto">
-                            <a class="btn btn-custom" href="contact.php">Get Appointment</a>
+                            <a class="btn btn-custom" href="contact.php">BOOK NOW!</a>
                         </div>
                     </div>
                 </nav>

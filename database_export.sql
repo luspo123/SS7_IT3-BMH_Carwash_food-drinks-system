@@ -37,8 +37,33 @@ CREATE TABLE `admin` (
 
 LOCK TABLES `admin` WRITE;
 /*!40000 ALTER TABLE `admin` DISABLE KEYS */;
-INSERT INTO `admin` VALUES (1,'admin','123','2025-03-10 11:18:49');
+INSERT INTO `admin` VALUES (1,'admin','12345','2025-02-25 11:18:49');
 /*!40000 ALTER TABLE `admin` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `customer_acc`
+--
+
+DROP TABLE IF EXISTS `customer_acc`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `customer_acc` (
+  `cm_accID` int(255) NOT NULL AUTO_INCREMENT,
+  `gmail` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  PRIMARY KEY (`cm_accID`),
+  UNIQUE KEY `gmail` (`gmail`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `customer_acc`
+--
+
+LOCK TABLES `customer_acc` WRITE;
+/*!40000 ALTER TABLE `customer_acc` DISABLE KEYS */;
+/*!40000 ALTER TABLE `customer_acc` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -64,6 +89,7 @@ CREATE TABLE `tblcarwashbooking` (
   `txnNumber` varchar(120) DEFAULT NULL,
   `postingDate` timestamp NULL DEFAULT current_timestamp(),
   `lastUpdationDate` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
+  `verification_status` enum('pending','accepted','declined') DEFAULT 'pending',
   PRIMARY KEY (`id`),
   KEY `carWashPoint` (`carWashPoint`),
   CONSTRAINT `washingpointid` FOREIGN KEY (`carWashPoint`) REFERENCES `tblwashingpoints` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -76,7 +102,7 @@ CREATE TABLE `tblcarwashbooking` (
 
 LOCK TABLES `tblcarwashbooking` WRITE;
 /*!40000 ALTER TABLE `tblcarwashbooking` DISABLE KEYS */;
-INSERT INTO `tblcarwashbooking` VALUES (1,316460298,'1',1,'ANuj kumar',1234567890,'2021-12-16','11:45:00','NA','Completed','Washing completed','e-Wallet','345345345','2021-12-13 19:14:22','2021-12-14 18:04:52'),(2,647869499,'3',2,'Anuj kumar',1234567890,'2021-12-30','15:47:00','na','New',NULL,NULL,NULL,'2021-12-13 19:14:47','2021-12-14 17:20:56'),(3,215755984,'2',3,'AMit',9874563210,'2021-12-19','15:05:00','NA','New',NULL,NULL,NULL,'2021-12-13 19:16:19',NULL),(4,440337019,'1',2,'Sarita',6987412360,'2022-01-01','19:37:00','NA','New',NULL,NULL,NULL,'2021-12-14 17:01:55',NULL),(5,783971257,'2',2,'John Doe',1234567890,'2021-12-25','13:31:00','NA','New',NULL,NULL,NULL,'2021-12-14 19:00:44',NULL),(6,328979472,'3 ',3,'Rahul Yadav',1234567890,'2021-12-18','10:15:00','NA','New',NULL,NULL,NULL,'2021-12-14 19:12:37',NULL),(7,151983398,'1',2,'Sanjeev',1234569870,'2021-12-15','19:50:00','Car wash','Completed','Car Wash Completed','Debit/Credit Card','DSGFS72342834','2021-12-14 19:15:28','2021-12-14 19:15:55');
+INSERT INTO `tblcarwashbooking` VALUES (1,316460298,'1',1,'ANuj kumar',1234567890,'2021-12-16','11:45:00','NA','Completed','Washing completed','e-Wallet','345345345','2021-12-13 19:14:22','2021-12-14 18:04:52','pending'),(2,647869499,'3',2,'Anuj kumar',1234567890,'2021-12-30','15:47:00','na','Completed','test','UPI','1234567890','2021-12-13 19:14:47','2025-03-26 06:27:50','pending'),(3,215755984,'2',3,'AMit',9874563210,'2021-12-19','15:05:00','NA','Completed','test','e-Wallet','123456789','2021-12-13 19:16:19','2025-03-26 06:29:11','pending'),(4,440337019,'1',2,'Sarita',6987412360,'2022-01-01','19:37:00','NA','New',NULL,NULL,NULL,'2021-12-14 17:01:55','2025-03-26 07:12:20','declined'),(5,783971257,'2',2,'John Doe',1234567890,'2021-12-25','13:31:00','NA','Declined',NULL,NULL,NULL,'2021-12-14 19:00:44','2025-03-26 06:50:49','pending'),(6,328979472,'3 ',3,'Rahul Yadav',1234567890,'2021-12-18','10:15:00','NA','Declined',NULL,NULL,NULL,'2021-12-14 19:12:37','2025-03-26 06:45:15','pending'),(7,151983398,'1',2,'Sanjeev',1234569870,'2021-12-15','19:50:00','Car wash','Declined','Car Wash Completed','Debit/Credit Card','DSGFS72342834','2021-12-14 19:15:28','2025-03-26 06:53:35','pending');
 /*!40000 ALTER TABLE `tblcarwashbooking` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -96,7 +122,7 @@ CREATE TABLE `tblenquiry` (
   `PostingDate` timestamp NULL DEFAULT current_timestamp(),
   `Status` int(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -105,7 +131,7 @@ CREATE TABLE `tblenquiry` (
 
 LOCK TABLES `tblenquiry` WRITE;
 /*!40000 ALTER TABLE `tblenquiry` DISABLE KEYS */;
-INSERT INTO `tblenquiry` VALUES (4,'Anuj kumar','anuj@gmail.com','General Enquiry','I want to know the price of car wash','2021-12-13 18:27:53',1),(5,'Amit','amit@gmail.com','Test','Test','2021-12-14 19:14:22',1),(6,'ering','hungry@123','carwash','meow hungry','2025-03-21 05:00:50',NULL);
+INSERT INTO `tblenquiry` VALUES (4,'Anuj kumar','anuj@gmail.com','General Enquiry','I want to know the price of car wash','2021-12-13 18:27:53',1),(5,'Amit','amit@gmail.com','Test','Test','2021-12-14 19:14:22',1),(6,'ering','hungry@123','carwash','meow hungry','2025-03-21 05:00:50',1),(7,'test','test@gmail.com','Booking Service','test  ','2025-03-24 17:32:22',1);
 /*!40000 ALTER TABLE `tblenquiry` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -173,4 +199,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-03-22  4:44:19
+-- Dump completed on 2025-03-26 15:57:11
