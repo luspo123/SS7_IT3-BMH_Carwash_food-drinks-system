@@ -73,16 +73,13 @@ foreach($results as $result)
 
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto">
-                            <a href="index.php" class="nav-item nav-link active">Home</a>
-                            <a href="about.php" class="nav-item nav-link">About</a>
-                            <a href="washing-plans.php" class="nav-item nav-link">Washing Plans</a>
+                            <a href="home.php" class="nav-item nav-link active">Home</a>
+
                             <a href="location.php" class="nav-item nav-link">Washing Points</a>
-                    
-                            <a href="contact.php" class="nav-item nav-link">Contact</a>
                             <a href="admin" class="nav-item nav-link">admin</a>
                         </div>
                         <div class="ml-auto">
-                            <a class="btn btn-custom" href="contact.php">BOOK NOW!</a>
+                            <a class="btn btn-custom" href="washing-plans.php">BOOK NOW!</a>
                         </div>
                     </div>
                 </nav>

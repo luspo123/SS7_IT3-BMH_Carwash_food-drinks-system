@@ -9,7 +9,7 @@ if (strlen($_SESSION['alogin']) == 0) {
     // Handle Accept or Decline actions
     if (isset($_GET['action']) && isset($_GET['id'])) {
         $id = intval($_GET['id']);
-        $status = ($_GET['action'] == 'accept') ? 'Completed' : 'Declined';
+        $status = ($_GET['action'] == 'accept') ? 'Accepted' : 'Declined';
 
         $sql = "UPDATE tblcarwashbooking SET verification_status = :status WHERE id = :id";
         $query = $dbh->prepare($sql);
@@ -17,14 +17,27 @@ if (strlen($_SESSION['alogin']) == 0) {
         $query->bindParam(':id', $id, PDO::PARAM_INT);
 
         if ($query->execute()) {
-            echo "<script>alert('Booking has been " . ($status == 'Completed' ? 'accepted' : 'declined') . " successfully!');</script>";
+            echo "<script>alert('Booking has been " . ($status == 'Accepted' ? 'accepted' : 'declined') . " successfully!');</script>";
             echo "<script>window.location.href ='all-bookings.php'</script>";
         } else {
             echo "<script>alert('Error updating booking status.');</script>";
         }
     }
 
-    ?>
+    // Handle Complete All Accepted Bookings action
+    if (isset($_GET['action']) && $_GET['action'] == 'complete_all') {
+        // Update all accepted bookings to completed
+        $sql = "UPDATE tblcarwashbooking SET status = 'Completed' WHERE verification_status = 'Accepted'";
+        $query = $dbh->prepare($sql);
+
+        if ($query->execute()) {
+            echo "<script>alert('All accepted bookings have been marked as completed successfully!');</script>";
+            echo "<script>window.location.href ='all-bookings.php'</script>";
+        } else {
+            echo "<script>alert('Error updating bookings. Please try again.');</script>";
+        }
+    }
+?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -108,6 +121,7 @@ if (strlen($_SESSION['alogin']) == 0) {
                 <div class="agile-tables">
                     <div class="w3l-table-info">
                       <h2>All Bookings</h2>
+                      <a href="all-bookings.php?action=complete_all" class="btn btn-primary" onclick="return confirm('Are you sure you want to mark all accepted bookings as completed?');">Complete All Accepted Bookings</a>
                         <table id="table">
                         <thead>
                           <tr>

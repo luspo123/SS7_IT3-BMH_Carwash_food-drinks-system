@@ -113,7 +113,7 @@ else
                 <div class="row align-items-center">
                     <div class="col-lg-6">
                         <div class="about-img">
-                            <img src="img/about.jpg" alt="Image">
+                            <img src="img/Gmap.png" alt="Image">
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -248,78 +248,7 @@ else
         <!-- Facts End -->
         
         
-        <!-- Price Start -->
-        <div class="price">
-            <div class="container">
-                <div class="section-header text-center">
-                    <p>Washing Plan</p>
-                    <h2>Choose Your Plan</h2>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="price-item">
-                            <div class="price-header">
-                                <h3>Basic Cleaning</h3>
-                                <h2><span>₱</span><strong>500</strong><span>.00</span></h2>
-                            </div>
-                            <div class="price-body">
-                                <ul>
-                                    <li><i class="far fa-check-circle"></i>Seats Washing</li>
-                                    <li><i class="far fa-check-circle"></i>Vacuum Cleaning</li>
-                                    <li><i class="far fa-check-circle"></i>Exterior Cleaning</li>
-                                    <li><i class="far fa-times-circle"></i>Interior Wet Cleaning</li>
-                                    <li><i class="far fa-times-circle"></i>Window Wiping</li>
-                                </ul>
-                            </div>
-                            <div class="price-footer">
-                                <a class="btn btn-custom"  data-toggle="modal" data-target="#myModal">Book Now</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="price-item featured-item">
-                            <div class="price-header">
-                                <h3>Premium Cleaning</h3>
-                                <h2><span>₱</span><strong>1000</strong><span>.00</span></h2>
-                            </div>
-                            <div class="price-body">
-                                <ul>
-                                    <li><i class="far fa-check-circle"></i>Seats Washing</li>
-                                    <li><i class="far fa-check-circle"></i>Vacuum Cleaning</li>
-                                    <li><i class="far fa-check-circle"></i>Exterior Cleaning</li>
-                                    <li><i class="far fa-check-circle"></i>Interior Wet Cleaning</li>
-                                    <li><i class="far fa-times-circle"></i>Window Wiping</li>
-                                </ul>
-                            </div>
-                            <div class="price-footer">
-                                <a class="btn btn-custom"  data-toggle="modal" data-target="#myModal">Book Now</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="price-item">
-                            <div class="price-header">
-                                <h3>Complex Cleaning</h3>
-                                <h2><span>₱</span><strong>3500</strong><span>.00</span></h2>
-                            </div>
-                            <div class="price-body">
-                                <ul>
-                                    <li><i class="far fa-check-circle"></i>Seats Washing</li>
-                                    <li><i class="far fa-check-circle"></i>Vacuum Cleaning</li>
-                                    <li><i class="far fa-check-circle"></i>Exterior Cleaning</li>
-                                    <li><i class="far fa-check-circle"></i>Interior Wet Cleaning</li>
-                                    <li><i class="far fa-check-circle"></i>Window Wiping</li>
-                                </ul>
-                            </div>
-                            <div class="price-footer">
-                                <a class="btn btn-custom"  data-toggle="modal" data-target="#myModal">Book Now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Price End -->
+       
         
         
 

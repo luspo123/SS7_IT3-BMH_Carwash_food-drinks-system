@@ -14,8 +14,6 @@
 										  </ul>
 										</li>
 
-	<li><a href="add-booking.php"><i class="fa fa-user" aria-hidden="true"></i>  <span>Add Car Wash Booking</span><div class="clearfix"></div></a></li>
-
 
 		 <li id="menu-academico" ><a href="#"><i class="fa fa-files-o" aria-hidden="true"></i><span>Car Washing Booking</span> <span class="fa fa-angle-right" style="float: right"></span><div class="clearfix"></div></a>
 										   <ul id="menu-academico-sub" >

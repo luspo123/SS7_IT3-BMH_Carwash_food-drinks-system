@@ -7,6 +7,7 @@ header('location:index.php');
 }
 else{
 ?>
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -43,29 +44,28 @@ else{
             </ol>
 <!--four-grids here-->
 		<div class="four-grids">
+			
 
-			<a href="all-bookings.php" target="_blank">
-					<div class="col-md-3 four-grid">
-						<div class="four-agileits">
-							<div class="icon">
-									<i class="glyphicon glyphicon-list-alt" aria-hidden="true"></i>
-							</div>
-							<div class="four-text">
-								<h3>Total Bookings</h3>
-
-								<?php $sql = "SELECT id from tblcarwashbooking";
-$query = $dbh -> prepare($sql);
-$query->execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
-$cnt=$query->rowCount();
-					?>			<h4> <?php echo htmlentities($cnt);?> </h4>
-				
-								
-							</div>
-							
-						</div>
-					</div>
-				</a>
+		<a href="all-bookings.php" target="_blank">
+        <div class="col-md-3 four-grid">
+            <div class="four-agileits">
+                <div class="icon">
+                    <i class="glyphicon glyphicon-list-alt" aria-hidden="true"></i>
+                </div>
+                <div class="four-text">
+                    <h3>Total Bookings</h3>
+                    <?php
+                    $sql = "SELECT COUNT(id) as TotalBookings FROM tblcarwashbooking";
+                    $query = $dbh->prepare($sql);
+                    $query->execute();
+                    $result = $query->fetch(PDO::FETCH_OBJ);
+                    $totalBookings = $result->TotalBookings ? $result->TotalBookings : 0;
+                    ?>
+                    <h4><?php echo htmlentities($totalBookings); ?></h4>
+                </div>
+            </div>
+        </div>
+    </a>
 <a href="new-booking.php" target="_blank">
 					<div class="col-md-3 four-grid">
 						<div class="four-agileinfo">
@@ -73,7 +73,7 @@ $cnt=$query->rowCount();
 								<i class="glyphicon glyphicon-list-alt" aria-hidden="true"></i>
 							</div>
 							<div class="four-text">
-								<h3>New Bookings</h3>
+								<h3>Request Bookings</h3>
 							<?php $sql1 = "SELECT id from tblcarwashbooking  where status='New'";
 $query1 = $dbh -> prepare($sql1);
 $query1->execute();
@@ -94,6 +94,7 @@ $newbookings=$query1->rowCount();
 							<i class="glyphicon glyphicon-list-alt" aria-hidden="true"></i>
 							</div>
 							<div class="four-text">
+								
 								<h3>Completed Bookings</h3>
 <?php $sql3 = "SELECT id from tblcarwashbooking  where status='Completed'";
 $query3= $dbh -> prepare($sql3);
@@ -155,6 +156,7 @@ $washingpoints=$query5->rowCount();
 						</div>
 					</div>
 </a>
+
 
 					<div class="clearfix"></div>
 				</div>
