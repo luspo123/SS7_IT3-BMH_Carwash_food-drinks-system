@@ -54,7 +54,7 @@ CREATE TABLE `customer_acc` (
   `password` varchar(255) NOT NULL,
   PRIMARY KEY (`cm_accID`),
   UNIQUE KEY `gmail` (`gmail`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -63,6 +63,7 @@ CREATE TABLE `customer_acc` (
 
 LOCK TABLES `customer_acc` WRITE;
 /*!40000 ALTER TABLE `customer_acc` DISABLE KEYS */;
+INSERT INTO `customer_acc` VALUES (1,'customer@gmail.com','123');
 /*!40000 ALTER TABLE `customer_acc` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -83,6 +84,7 @@ CREATE TABLE `tblcarwashbooking` (
   `washDate` date DEFAULT NULL,
   `washTime` time DEFAULT NULL,
   `message` mediumtext DEFAULT NULL,
+  `foodSelection` text DEFAULT NULL,
   `status` varchar(120) DEFAULT NULL,
   `adminRemark` mediumtext DEFAULT NULL,
   `paymentMode` varchar(120) DEFAULT NULL,
@@ -102,7 +104,7 @@ CREATE TABLE `tblcarwashbooking` (
 
 LOCK TABLES `tblcarwashbooking` WRITE;
 /*!40000 ALTER TABLE `tblcarwashbooking` DISABLE KEYS */;
-INSERT INTO `tblcarwashbooking` VALUES (1,316460298,'1',1,'ANuj kumar',1234567890,'2021-12-16','11:45:00','NA','Completed','Washing completed','e-Wallet','345345345','2021-12-13 19:14:22','2021-12-14 18:04:52','pending'),(2,647869499,'3',2,'Anuj kumar',1234567890,'2021-12-30','15:47:00','na','Completed','test','UPI','1234567890','2021-12-13 19:14:47','2025-03-26 06:27:50','pending'),(3,215755984,'2',3,'AMit',9874563210,'2021-12-19','15:05:00','NA','Completed','test','e-Wallet','123456789','2021-12-13 19:16:19','2025-03-26 06:29:11','pending'),(4,440337019,'1',2,'Sarita',6987412360,'2022-01-01','19:37:00','NA','New',NULL,NULL,NULL,'2021-12-14 17:01:55','2025-03-26 07:12:20','declined'),(5,783971257,'2',2,'John Doe',1234567890,'2021-12-25','13:31:00','NA','Declined',NULL,NULL,NULL,'2021-12-14 19:00:44','2025-03-26 06:50:49','pending'),(6,328979472,'3 ',3,'Rahul Yadav',1234567890,'2021-12-18','10:15:00','NA','Declined',NULL,NULL,NULL,'2021-12-14 19:12:37','2025-03-26 06:45:15','pending'),(7,151983398,'1',2,'Sanjeev',1234569870,'2021-12-15','19:50:00','Car wash','Declined','Car Wash Completed','Debit/Credit Card','DSGFS72342834','2021-12-14 19:15:28','2025-03-26 06:53:35','pending');
+INSERT INTO `tblcarwashbooking` VALUES (1,316460298,'1',1,'ANuj kumar',1234567890,'2021-12-16','11:45:00','NA',NULL,'Completed','Washing completed','e-Wallet','345345345','2021-12-13 19:14:22','2025-03-27 00:00:28','accepted'),(2,647869499,'3',2,'Anuj kumar',1234567890,'2021-12-30','15:47:00','na',NULL,'Completed','test','UPI','1234567890','2021-12-13 19:14:47','2025-03-26 06:27:50','pending'),(3,215755984,'2',3,'AMit',9874563210,'2021-12-19','15:05:00','NA',NULL,'Completed','test','e-Wallet','123456789','2021-12-13 19:16:19','2025-03-26 06:29:11','pending'),(4,440337019,'1',2,'Sarita',6987412360,'2022-01-01','19:37:00','NA',NULL,'Completed',NULL,NULL,NULL,'2021-12-14 17:01:55','2025-03-27 00:02:40','accepted'),(5,783971257,'2',2,'John Doe',1234567890,'2021-12-25','13:31:00','NA',NULL,'Declined',NULL,NULL,NULL,'2021-12-14 19:00:44','2025-03-26 06:50:49','pending'),(6,328979472,'3 ',3,'Rahul Yadav',1234567890,'2021-12-18','10:15:00','NA',NULL,'Declined',NULL,NULL,NULL,'2021-12-14 19:12:37','2025-03-26 06:45:15','pending'),(7,151983398,'1',2,'Sanjeev',1234569870,'2021-12-15','19:50:00','Car wash',NULL,'Declined','Car Wash Completed','Debit/Credit Card','DSGFS72342834','2021-12-14 19:15:28','2025-03-26 06:53:35','pending');
 /*!40000 ALTER TABLE `tblcarwashbooking` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -199,4 +201,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-03-26 15:57:11
+-- Dump completed on 2025-03-27  1:43:53
